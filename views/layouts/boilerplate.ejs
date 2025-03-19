@@ -15,15 +15,20 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
   </head>
 <body>
+  <%- include("../includes/navbar.ejs") %>
+    <%- include("../includes/flash.ejs") %>
 
-   <%- include("../includes/navbar.ejs") %>
+
+      <div class="cantainer"> <%- body %></div>
+
+      <%- include("../includes/footer.ejs") %>
   
-    <div class="container">
+  
+   
 
-      <%- include("../includes/flash.ejs") %>
-        <%- body %>
-    </div>
-    <%- include("../includes/footer.ejs") %>
+      
+        
+   
     <script src="/js/script.js"></script>  
   <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

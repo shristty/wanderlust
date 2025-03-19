@@ -4,7 +4,7 @@ if(process.env.NODE_ENV !="production"){
   
   const express=require("express");
   const app=express();
-  const mongoose=require("mongoose");
+ const mongoose=require("mongoose");
   const path=require("path");
   const methodOverride=require("method-override");
   const Listing=require("./models/listing.js");
@@ -75,7 +75,7 @@ if(process.env.NODE_ENV !="production"){
   };
 
 
-
+const PORT = process.env.PORT || 8080;
 
   
   app.use(session(sessionOptions));
@@ -97,17 +97,7 @@ if(process.env.NODE_ENV !="production"){
   });
     
 
-// // app.get("/demouser",async(req,res)=>{
 
-// // let Fakeuser = new User({
-// //   email:"student2@getMaxListeners.com",
-// //   username:"deltanew-student"
-// // });
-
-// //    let registereduser= await User.register(Fakeuser,"helloworld");
-// //    res.send(registereduser);
-
-// // });
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
@@ -116,13 +106,33 @@ app.use("/",userRouter);
 app.use((err,req,res,next)=>{
   let {statuscode=500,message="Oops sorry!"}=err;
 res.status(statuscode).render("error.ejs",{message});
-  // res.status(statuscode).send(message);
+  res.status(statuscode).send(message);
 });
-app.listen(8080,()=>{
+app.listen(PORT,()=>{
 console.log("server is listening on port 8080");
 });
 
 
 
+// require("dotenv").config();
 
 
+// const express= require("express");
+
+
+// const mongoose = require("mongoose");
+
+
+
+
+// const PORT = process.env.PORT || 8080;
+// const uri = process.env.ATLASDB_URL;
+// const app=express();
+
+
+// app.listen(PORT,()=>{
+//   console.log("app started");
+//   mongoose.connect(uri);
+//   console.log("db connected");
+//   console.log(uri);
+//   });
