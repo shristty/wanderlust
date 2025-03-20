@@ -108,6 +108,39 @@ app.use((err,req,res,next)=>{
 res.status(statuscode).render("error.ejs",{message});
   res.status(statuscode).send(message);
 });
+
+//external code
+
+app.get("/listings/:id", async (req, res) => {
+  try {
+      const listing = await Listing.findById(req.params.id)
+        .populate({
+            path: "reviews",
+            populate: { path: "author", select: "username" }
+        })
+        .populate("owner");
+      
+      console.log("Fetched Listing:", listing);  
+      
+      if (!listing) {
+          return res.status(404).send("Listing not found");
+      }
+
+      res.render("listings/show", { listing, currUser: req.user });
+  } catch (error) {
+      console.error("Error fetching listing:", error);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
+
+
+
+
+
+
 app.listen(PORT,()=>{
 console.log("server is listening on port 8080");
 });
