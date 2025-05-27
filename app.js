@@ -27,6 +27,7 @@ if(process.env.NODE_ENV !="production"){
 
    const dbUrl = process.env.ATLASDB_URL;
 
+
   main()
   .then(()=>{
   console.log("connected to db");
@@ -39,6 +40,13 @@ if(process.env.NODE_ENV !="production"){
   async function main(){
       await mongoose.connect(dbUrl);
   }
+
+
+
+
+
+
+
 
     app.set("view engine","ejs");
     app.set("views",path.join(__dirname,"/views"));
@@ -142,7 +150,8 @@ app.get("/listings/:id", async (req, res) => {
 
 
 app.listen(PORT,()=>{
-console.log("server is listening on port 8080");
+console.log("server is listening on port");
+
 });
 
 

@@ -1,6 +1,4 @@
-if(process.env.NODE_ENV !="production"){
-    require("dotenv").config();
-  }
+
 const mongoose=require("mongoose");
 const initdata=require("./data.js");
 console.log(initdata.data);
@@ -27,7 +25,7 @@ async function main(){
 }
  const initdb =async()=>{
     await Listing.deleteMany({});
-   initdata.data= initdata.data.map((obj)=>({ ...obj , owner:'67d5cec73efbb73684c5b320'}));
+   initdata.data= initdata.data.map((obj)=>({ ...obj , owner:'68349997e2a4fcd71d4e5f5f'}));
     await Listing.insertMany(initdata.data);
     console.log("data was initialized");
 }
