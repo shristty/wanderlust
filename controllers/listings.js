@@ -31,9 +31,9 @@ module.exports.renderNewForm = (req,res)=>{
             limit: 1,
           })
             .send()
-            console.log("heyyyyy");
-          console.log(response.body.features[0].geometry);
-          console.log("hiiiiiii");
+          
+          
+         
         let url = req.file.path;
         let filename = req.file.filename;
      
@@ -42,7 +42,7 @@ module.exports.renderNewForm = (req,res)=>{
         newListing.image = {url,filename};
         newListing.geometry = response.body.features[0].geometry;
        let savedListing = await newListing.save();
-       console.log(savedListing);
+   
         req.flash("success","New listing Created!");
         res.redirect("/listings");}
 
